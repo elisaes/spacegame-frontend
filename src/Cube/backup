@@ -1,0 +1,140 @@
+let veloZ = -600;
+let persOr = 50;
+let contX = 600;
+let contY = 500;
+let contZ = 800;
+let keys = {};
+let transX = 0;
+let transY = 0;
+let rotY = 0;
+
+const pressingKeys = (e) => {
+  const movingKeysArr = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+  movingKeysArr.forEach((val) => {
+    if (e.code === val) {
+      e.preventDefault();
+    }
+  });
+  if (e.type === "keydown") {
+    keys[e.code] = true;
+  }
+  if (e.type === "keyup") {
+    keys[e.code] = false;
+  }
+};
+
+const degToRad = (deg) => {
+  return (deg * Math.PI) / 180;
+};
+const moving = (dt) => {
+  // console.log("degree", rotY);
+  // console.log(Math.sin(degToRad(rotY)));
+  // console.log(Math.cos(degToRad(rotY)));
+
+  if (keys["ArrowDown"]) {
+    //contX += 10;
+    //contY -= 10;
+    //contZ -= Math.cos(degToRad(rotY)) * 10;
+    //contX += Math.sin(degToRad(rotY)) * 10;
+    contZ -= 0.1 * dt;
+    //console.log(contZ);
+  }
+  if (keys["ArrowUp"]) {
+    //contZ += Math.cos(degToRad(rotY)) * 10;
+    // contX -= Math.sin(degToRad(rotY)) * 10;
+    contZ += 0.1 * dt;
+  }
+  if (keys["ArrowLeft"]) {
+    rotY++;
+    //contX += 10;
+  }
+  if (keys["ArrowRight"]) {
+    rotY--;
+
+    // contY -= 10;
+  }
+};
+
+const objZArr = [];
+const objArr = [];
+const objZVelo = [];
+
+const randN = (min, max) => {
+  return Math.random() * (max - min) + min;
+};
+
+const makeObjects = () => {
+  const container = document.getElementById("container");
+
+  for (let i = 0; i < 2000; i++) {
+    const obj = document.createElement("div");
+    obj.className = "star";
+    objZArr.push(randN(-1000, 1000));
+    objZVelo.push(randN(1, 10));
+    obj.style.transform = `translateZ(${objZArr[i]}px)`;
+    obj.style.top = `${randN(0, 2000)}px`;
+    obj.style.left = `${randN(0, 2000)}px`;
+    obj.style.position = `absolute`;
+
+    container.appendChild(obj);
+    objArr.push(obj);
+  }
+};
+
+const updateObjects = () => {
+  for (let idx in objArr) {
+    const obj = objArr[idx];
+    objZArr[idx] += objZVelo[idx];
+    //obj.style.transform = `translateZ(${objZArr[idx]}px)`;
+    if (objZArr[idx] > 1000) {
+      objZArr[idx] = -1000;
+    }
+  }
+};
+
+const drawingCube = (dt) => {
+  // transX+=1;
+  // transY+=0;
+  const bigContainer = document.getElementById("bigContainer");
+  const container = document.getElementById("container");
+  const cubeWrapper = document.getElementById("cubeWrapper");
+  const front = document.getElementById("front");
+  const back = document.getElementById("back");
+  const top = document.getElementById("top");
+  const bottom = document.getElementById("bottom");
+  const left = document.getElementById("left");
+  const rigth = document.getElementById("rigth");
+
+  // bigContainer.style.perspectiveOrigin = persOr + "% 400px";
+  container.style.transform = `translate3d(${transX}px, ${transY}px, ${contZ}px)`;
+  container.style.top = contY + "px";
+  container.style.left = contX + "px";
+  cubeWrapper.style.transform = `rotateY(${cubeRotY}deg)`;
+  // container.style.transform = `rotateY(${rotY}deg)`;
+
+  front.style.transform = `rotateY(${rotY}deg) translateZ(${-contZ + 700}px)`;
+  back.style.transform = `translateZ(-150px)`;
+  top.style.transform = `translateZ(-100px) rotateX(-90deg) translateX(0px)`;
+  bottom.style.transform = `rotateX(90deg) translateY(-100px)`;
+  left.style.transform = `rotateY(270deg) translateX(-150px)`;
+  rigth.style.transform = `rotateY(270deg) translateX(-100px)`;
+
+  window.addEventListener("keydown", pressingKeys);
+  window.addEventListener("keyup", pressingKeys);
+};
+
+let time = Date.now();
+const cube = () => {
+  makeObjects();
+  drawingCube();
+  setInterval(() => {
+    const dt = Date.now() - time;
+    console.log();
+    time = Date.now();
+    moving(dt);
+    drawingCube(dt);
+    updateObjects();
+  }, 20);
+};
+
+export default cube;

@@ -1,38 +1,79 @@
-.App {
-  text-align: center;
+#bigContainer {
+  perspective: 1000px;
+  perspective-origin: 40% 400px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#wrapper {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#container {
+  width: 2000px;
+  position: relative;
+  transform-style: preserve-3d;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#cubeWrapper {
+  top: 200px;
+  left: 200px;
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background-color: white;
+  transform-style: preserve-3d;
 }
 
-.App-link {
-  color: #61dafb;
+.sides {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  opacity: 0.3
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#front {
+  background-color: rgb(27, 120, 201);
+}
+
+
+#back {
+  background-color: rgb(211, 51, 30);
+
+}
+
+.star {
+  /* background-color: white; */
+  background-image: url("./Cube/star02.png");
+  background-size: cover;
+  width: 2px;
+  height: 2px;
+}
+
+
+#top {
+  background-color: blueviolet;
+  transform-origin: top center;
+}
+
+
+
+#bottom {
+  background-color: rgb(175, 53, 199);
+  transform-origin: bottom center;
+
+}
+
+
+#left {
+  background-color: rgb(115, 197, 61);
+  transform-origin: center left;
+
+}
+
+
+#rigth {
+  background-color: rgb(189, 179, 44);
+  transform-origin: top right;
+
 }
