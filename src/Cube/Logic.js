@@ -1,80 +1,132 @@
-let contX = 600;
-let contY = 500;
-let contZ = 800;
-let keys = {};
-let transX = 0;
-let transY = 0;
-let rotY = 0;
+import Stars from "./Stars";
+import Player from "./Player";
+import Enemy from "./Enemy";
 
-const pressingKeys = (e) => {
-  const movingKeysArr = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
-  movingKeysArr.forEach((val) => {
-    if (e.code === val) {
-      e.preventDefault();
-    }
-  });
-  if (e.type === "keydown") {
-    keys[e.code] = true;
-  }
-  if (e.type === "keyup") {
-    keys[e.code] = false;
+let time = Date.now();
+let start = true;
+let player = {};
+const starsObj = {};
+const enemyObj = {};
+const bulletObj = {};
+const interval = 20;
+
+const stop = (e) => {
+  start = !start;
+};
+
+const createStartButton = () => {
+  let button = document.getElementById("stop");
+  button.addEventListener("click", stop);
+};
+const creatingPlayer = () => {
+  player = new Player(200, 300, -100, bulletObj);
+  player.initializing();
+};
+
+const createStars = () => {
+  for (let i = 0; i < 1000; i++) {
+    starsObj[i] = new Stars(
+      i,
+      Math.random() * 1000,
+      Math.random() * 600,
+      -(Math.random() * 600)
+    );
+
+    starsObj[i].initialize();
   }
 };
 
-
-const moving = (dt) => {
-
-  if (keys["ArrowDown"]) {
-    contZ -= .1 * dt;
-  }
-  if (keys["ArrowUp"]) {
-    contZ += .1 * dt;
-  }
-  if (keys["ArrowLeft"]) {
-    rotY++;
-  }
-  if (keys["ArrowRight"]) {
-    rotY--;
+const creatingEnemy = () => {
+  for (let i = 0; i < 1; i++) {
+    enemyObj[i] = new Enemy(i, 300, 300, -2000);
+    enemyObj[i].initializing();
   }
 };
 
-const drawingCube = (dt) => {
-  const bigContainer = document.getElementById("bigContainer");
-  const container = document.getElementById("container");
-  const front = document.getElementById("front");
-  const back = document.getElementById("back");
-  const top = document.getElementById("top");
-  const bottom = document.getElementById("bottom");
-  const left = document.getElementById("left");
-  const rigth = document.getElementById("rigth");
+const collisionDetection = (obj1, obj2) => {
+  const radiusCheck = (a, b, r) => {
+    return Math.abs(a - b) < r;
+  };
 
-  // bigContainer.style.perspectiveOrigin = persOr + "% 400px";
-  container.style.transform = `translate3d(${transX}px, ${transY}px, ${contZ}px)`;
-  container.style.top = contY + "px";
-  container.style.left = contX + "px";
-  // container.style.transform = `rotateY(${rotY}deg)`;
+  if (
+    radiusCheck(obj1.x, obj2.x, 100) &&
+    radiusCheck(obj1.y, obj2.y, 100) &&
+    radiusCheck(obj1.z, obj2.z, 100)
+  ) {
+    console.log("HITEED,", obj1, obj2);
 
-  front.style.transform = `translateZ(-100px)`;
-  back.style.transform = `translateZ(-150px)`;
-  top.style.transform = `translateZ(-100px) rotateX(-90deg) translateX(0px)`;
-  bottom.style.transform = `rotateX(90deg) translateY(-100px)`;
-  left.style.transform = `rotateY(270deg) translateX(-150px)`;
-  rigth.style.transform = `rotateY(270deg) translateX(-100px)`;
+    return true;
 
-
+  }
 };
 
-let time = Date.now()
-const cube = () => {
-  window.addEventListener("keydown", pressingKeys);
-  window.addEventListener("keyup", pressingKeys);
-  drawingCube();
+const gameLoop = () => {
   setInterval(() => {
-    const dt = Date.now()-time
-    time = Date.now()
-    moving(dt);
-    drawingCube(dt);
-  }, 20);
+    const dt = Date.now() - time; // 0
+    time = Date.now(); // 0
+    if (start) {
+      //stars
+      for (let key in starsObj) {
+        const star = starsObj[key];
+        star.movement();
+      }
+      //bullets
+
+      for (let key in bulletObj) {
+        const bullet = bulletObj[key];
+        bullet.movement(bulletObj);
+      }
+      //enemies
+
+      for (const key in enemyObj) {
+        enemyObj[key].moving();
+        enemyObj[key].drawing();
+      }
+
+      //run collision detections bullet-enemy
+      for (let key in bulletObj) {
+        const bullet = bulletObj[key];
+        for (const eKey in enemyObj) {
+          const enemy = enemyObj[eKey];
+          const collided = collisionDetection(bullet, enemy);
+
+          if (collided){
+            bullet.deleteEl();
+            enemy.deleteEl();
+            delete bulletObj[bullet.id];
+            delete enemyObj[enemy.id];
+          }
+        }
+      }
+
+      //run collision detections player-enemy
+
+      for (let key in enemyObj) {
+        const enemy = enemyObj[key];
+        const collided = collisionDetection(player, enemy);
+        if (collided){
+       //   stop()
+        }
+      }
+
+      //player
+      if (player) {
+        player.moving(dt);
+        player.drawing();
+      }
+    }
+  }, interval);
 };
 
-export default cube;
+const logic = () => {
+  // one time initialization
+  createStars();
+  createStartButton();
+  creatingPlayer();
+  creatingEnemy();
+
+  // main game loop
+  gameLoop();
+};
+
+export default logic;

@@ -1,11 +1,11 @@
 #bigContainer {
   perspective: 1000px;
-  perspective-origin: 40% 400px;
+  perspective-origin: 50% 400px;
 }
 
 #wrapper {
-  height: 100vh;
-  width: 100vw;
+  height: 600px;
+  width: 1000px;
   background-color: black;
 }
 
@@ -13,67 +13,106 @@
   width: 2000px;
   position: relative;
   transform-style: preserve-3d;
+  transform-origin: center center 50px;
 }
 
 #cubeWrapper {
-  top: 200px;
-  left: 200px;
   position: absolute;
   width: 200px;
-  height: 200px;
   background-color: white;
   transform-style: preserve-3d;
+  transform: rotateY(100deg)
 }
 
 .sides {
   width: 50px;
   height: 50px;
   position: absolute;
-  opacity: 0.3
 }
 
 #front {
-  background-color: rgb(27, 120, 201);
+  transform: translateZ(-100px);
+  background-image: url("./Cube/spaceshipText.jpg");
+  background-size: cover;
+
 }
 
 
 #back {
-  background-color: rgb(211, 51, 30);
+  background-image: url("./Cube/spaceshipText.jpg");
+  background-size: cover;
 
+  transform: translateZ(-150px);
+
+}
+
+
+
+
+
+#top {
+  background-image: url("./Cube/spaceshipText.jpg");
+  background-size: cover;
+  transform-origin: top center;
+  transform: translateZ(-100px) rotateX(-90deg) translateX(0px);
+}
+
+
+
+#bottom {
+  background-image: url("./Cube/spaceshipText.jpg");
+  background-size: cover;
+  transform-origin: bottom center;
+  transform: rotateX(90deg) translateY(-100px);
+
+}
+
+
+#left {
+  background-image: url("./Cube/spaceshipText.jpg");
+  background-size: cover;
+  transform-origin: center left;
+  transform: rotateY(270deg) translateX(-150px);
+
+}
+
+
+#rigth {
+  background-image: url("./Cube/spaceshipText.jpg");
+  background-size: cover;
+  transform-origin: top right;
+  transform: rotateY(270deg) translateX(-100px);
+
+}
+
+.bullet {
+
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  background-color: yellow;
 }
 
 .star {
   /* background-color: white; */
   background-image: url("./Cube/star02.png");
   background-size: cover;
-  width: 2px;
-  height: 2px;
+  width: 4px;
+  height: 4px;
+  position: absolute;
 }
 
-
-#top {
-  background-color: blueviolet;
-  transform-origin: top center;
-}
-
-
-
-#bottom {
-  background-color: rgb(175, 53, 199);
-  transform-origin: bottom center;
-
-}
-
-
-#left {
-  background-color: rgb(115, 197, 61);
-  transform-origin: center left;
-
-}
-
-
-#rigth {
-  background-color: rgb(189, 179, 44);
-  transform-origin: top right;
+.b {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #3b4ba3;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: inset -25px -25px 40px rgba(0, 0, 0, .5);
+  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 220, .3) 0%, transparent 100%);
+  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 220, .3) 0%, transparent 100%);
+  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 220, .3) 0%, transparent 100%);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 220, .3) 0%, transparent 100%);
 
 }

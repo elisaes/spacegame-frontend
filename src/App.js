@@ -1,10 +1,10 @@
 import React from "react";
 import "./App.css";
-import Cube from "./Cube/Cube"
+import Space from "./Cube/Space"
 
 function App() {
   return (<div>
-    <Cube/>
+    <Space/>
 
   </div>);
 }
