@@ -8,6 +8,13 @@ import Home from "./Home";
 import Register from "./Register";
 
 class App extends Component {
+  state ={
+    isAuth:false,
+    user:null,
+  }
+  registerHandler=(credentials)=>{
+
+  }
   render() {
     return (
       <Router>
