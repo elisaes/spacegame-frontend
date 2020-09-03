@@ -1,6 +1,7 @@
 import Stars from "./Stars";
 import Player from "./Player";
 import Enemy from "./Enemy";
+import Planet from "./Planets";
 
 let time = Date.now();
 let start = true;
@@ -9,6 +10,8 @@ const starsObj = {};
 const enemyObj = {};
 const bulletObj = {};
 const interval = 20;
+const planets = {};
+const planetUrl = ["/img/sunRotate.gif"];
 
 const stop = (e) => {
   start = !start;
@@ -22,9 +25,24 @@ const creatingPlayer = () => {
   player = new Player(200, 300, -100, bulletObj);
   player.initializing();
 };
+const creatingPlanets = () => {
+  planetUrl.forEach((url, i) => {
+    const planet =  new Planet(
+      i,
+       350,
+       250,
+      -1000,
+      url
+    );
+    planet.initializing();
+
+    planets[i] =planet
+    console.log(planet)
+  });
+};
 
 const createStars = () => {
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 500; i++) {
     starsObj[i] = new Stars(
       i,
       Math.random() * 1000,
@@ -56,7 +74,6 @@ const collisionDetection = (obj1, obj2) => {
     console.log("HITEED,", obj1, obj2);
 
     return true;
-
   }
 };
 
@@ -90,7 +107,7 @@ const gameLoop = () => {
           const enemy = enemyObj[eKey];
           const collided = collisionDetection(bullet, enemy);
 
-          if (collided){
+          if (collided) {
             bullet.deleteEl();
             enemy.deleteEl();
             delete bulletObj[bullet.id];
@@ -104,8 +121,8 @@ const gameLoop = () => {
       for (let key in enemyObj) {
         const enemy = enemyObj[key];
         const collided = collisionDetection(player, enemy);
-        if (collided){
-       //   stop()
+        if (collided) {
+          //   stop()
         }
       }
 
@@ -120,6 +137,7 @@ const gameLoop = () => {
 
 const logic = () => {
   // one time initialization
+  creatingPlanets();
   createStars();
   createStartButton();
   creatingPlayer();

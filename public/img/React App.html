@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="icon" href="http://localhost:3000/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  <style type="text/css">body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+</style><style type="text/css">/* * {
+  margin: 0;
+} */
+
+.background{
+  background-image: url(/static/media/back1.9e977f31.jpg);
+  background-repeat: no-repeat;
+  height: 100vh;
+
+
+}
+
+.background h1 {
+  margin: 0;
+}
+
+.title{
+  color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100%
+}
+.link{
+  text-decoration: none;
+  color:white;
+  font-size: 40px;
+  font-weight: bolder;
+}
+.link:hover{
+  color: yellowgreen;
+}
+
+#bigContainer {
+  perspective: 1000px;
+  perspective-origin: 50% 400px;
+}
+
+#wrapper {
+  height: 600px;
+  width: 1000px;
+  background-color: black;
+}
+
+#container {
+  width: 2000px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: center center 50px;
+}
+
+#cubeWrapper {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  transform-style: preserve-3d;
+  transform: rotateY(100deg)
+}
+
+.sides {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+}
+
+#front {
+  transform: translateZ(-25px);
+  background-image: url(/static/media/spaceshipText.96328d09.jpg);
+  background-size: cover;
+
+}
+
+
+#back {
+  background-image: url(/static/media/spaceshipText.96328d09.jpg);
+  background-size: cover;
+
+  transform: translateZ(25px);
+
+}
+
+#top {
+  background-image: url(/static/media/spaceshipText.96328d09.jpg);
+  background-size: cover;
+  transform-origin: top center;
+  transform: translateZ(25px) rotateX(-90deg) translateX(0px);
+}
+
+
+
+#bottom {
+  background-image: url(/static/media/spaceshipText.96328d09.jpg);
+  background-size: cover;
+  transform-origin: bottom center;
+  transform: rotateX(90deg) translateY(25px);
+
+}
+
+
+#left {
+  background-image: url(/static/media/spaceshipText.96328d09.jpg);
+  background-size: cover;
+  transform-origin: center left;
+  transform: rotateY(270deg) translateX(-25px);
+
+}
+
+
+#rigth {
+  background-image: url(/static/media/spaceshipText.96328d09.jpg);
+  background-size: cover;
+  transform-origin: top right;
+  transform: rotateY(270deg) translateX(25px);
+
+}
+
+.bullet {
+
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  background-color: yellow;
+}
+
+.star {
+  /* background-color: white; */
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAMAAADXT/YiAAADAFBMVEUAAAA5OTlCQkJSUlJaWlpzc3N7e3uEhISMjIyUlJScnJylpaWtra3GxsbOzs69tbW1ra2clJR7c3NrY2P/3t7vxsaMc3P/zs7vtbVjSkq1hIT/tbXnhIR7QkIhEBD/e3uEKSlSGBjOCAjOKSH3Y1LOWkqUY1qlQjHeMQj/OQhzGABNLQSlKQB7Y1r/hFLOYzm9QghjIQD/tYTvaxhzORDehDljWlKUjITOjEqEWin/pUL3jBj/1qWtjGOEUgitcxClawj/5721exCUYwj33q2cjGvWtXOlhEL3tSnvrSFza1pKQjHvzoT/zmPerUL/vSm1lELvvUL/xjFaQgjOlAj/3oTntSH/997v5861rZS1pXP/55z/1lqlnHuEe1r/99b/762chBjnximtnCH/5yGtraWcnIxKSkKtrZQxMSmlpYRaWhjOzjH//zl7hCHW5zmltTGtxjlzhDmUtUK1zntzlDFSaym992N7pUKl3lJ7tULn9957jHOlvZyc93vG5717tWtSlEI5hCkYORBr3lopWiFz/2NazkpClDlrzmNKrUKtta21zrU5QjkhMSGl96U5czkhUiEpayk5lDkYUhgISjEQQjkxOVIxOYxrc85KUrXv7//n5/+9vdZra3vOzvfGxvdCQlqlpee1tf9KSmuUlNacnOdzc61ra6Wlpf+EhM5jY5xzc7VSUoR7e8ZCQmtaWpRKSntjY6U5OWMpKUpCQnsxMWM5OXNjY85jY/9SUtZCQr0hIWNSUv85ObVCQt4hIXMxKXtjWpSMhK1jWoxKKaVCEMYpAJRKKZS1nOchGDFjQpw/LQ4hAFIxAHuEY62EQtZjIbU5AIS1hO+ta/dzQq2ESsZSKXtKIXMxAGNKAJRSAKVKOVpjSnvOlP+ca8Z7Qq2cUt5KCIQhADmtY8ZKAGOcY6VjAHN7c3sKGQpKAEpSAFJ7AHN7SnNKMUJjKUKEa3OUc3v/c5RjOUKUa3OcOUr/jJy9a3PvY3POKTn/OUp7GCH3c3vWOUKlISn///+esnxoAAAAAXRSTlMAQObYZgAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB+IMDwAtLBg523IAAAAvSURBVAjXY2AAAhYGGGCFMdLZ0qEMVk5WEJOF9QXnf3M2VhawmDlrOpo6JL0Q8wAKKAXqn9VOvQAAAABJRU5ErkJggg==);
+  background-size: cover;
+  width: 4px;
+  height: 4px;
+  position: absolute;
+}
+
+.b {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: #3b4ba3;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: inset -25px -25px 40px rgba(0, 0, 0, .5);
+  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 220, .3) 0%, transparent 100%);
+
+}
+
+.planet {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+}</style></head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"><div class="background"><div class="title"><a class="link" href="http://localhost:3000/">The future of the 🌌 is in your ✋✋</a></div></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script src="./React App_files/bundle.js"></script><script src="./React App_files/0.chunk.js"></script><script src="./React App_files/main.chunk.js"></script><script src="./React App_files/main.31eb121c1347ecedf9ce.hot-update.js"></script>
+
+</body></html>

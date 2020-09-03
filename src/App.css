@@ -1,3 +1,36 @@
+/* * {
+  margin: 0;
+} */
+
+.background{
+  background-image: url("./img/back1.jpg");
+  background-repeat: no-repeat;
+  height: 100vh;
+
+
+}
+
+.background h1 {
+  margin: 0;
+}
+
+.title{
+  color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100%
+}
+.link{
+  text-decoration: none;
+  color:white;
+  font-size: 40px;
+  font-weight: bolder;
+}
+.link:hover{
+  color: yellowgreen;
+}
+
 #bigContainer {
   perspective: 1000px;
   perspective-origin: 50% 400px;
@@ -18,8 +51,8 @@
 
 #cubeWrapper {
   position: absolute;
-  width: 200px;
-  background-color: white;
+  width: 50px;
+  height: 50px;
   transform-style: preserve-3d;
   transform: rotateY(100deg)
 }
@@ -31,7 +64,7 @@
 }
 
 #front {
-  transform: translateZ(-100px);
+  transform: translateZ(-25px);
   background-image: url("./Cube/spaceshipText.jpg");
   background-size: cover;
 
@@ -42,19 +75,15 @@
   background-image: url("./Cube/spaceshipText.jpg");
   background-size: cover;
 
-  transform: translateZ(-150px);
+  transform: translateZ(25px);
 
 }
-
-
-
-
 
 #top {
   background-image: url("./Cube/spaceshipText.jpg");
   background-size: cover;
   transform-origin: top center;
-  transform: translateZ(-100px) rotateX(-90deg) translateX(0px);
+  transform: translateZ(25px) rotateX(-90deg) translateX(0px);
 }
 
 
@@ -63,7 +92,7 @@
   background-image: url("./Cube/spaceshipText.jpg");
   background-size: cover;
   transform-origin: bottom center;
-  transform: rotateX(90deg) translateY(-100px);
+  transform: rotateX(90deg) translateY(25px);
 
 }
 
@@ -72,7 +101,7 @@
   background-image: url("./Cube/spaceshipText.jpg");
   background-size: cover;
   transform-origin: center left;
-  transform: rotateY(270deg) translateX(-150px);
+  transform: rotateY(270deg) translateX(-25px);
 
 }
 
@@ -81,7 +110,7 @@
   background-image: url("./Cube/spaceshipText.jpg");
   background-size: cover;
   transform-origin: top right;
-  transform: rotateY(270deg) translateX(-100px);
+  transform: rotateY(270deg) translateX(25px);
 
 }
 
@@ -115,4 +144,12 @@
   background-image: -o-linear-gradient(-45deg, rgba(255, 255, 220, .3) 0%, transparent 100%);
   background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 220, .3) 0%, transparent 100%);
 
+}
+
+.planet {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
