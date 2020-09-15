@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 import "./App.css";
 import Space from "./Cube/Space";
 import Login from "./auth/Login";

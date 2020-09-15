@@ -1,9 +1,11 @@
 class Enemy {
-  constructor(id, x, y, z) {
+  constructor(id, x, y, z, width, deltaz) {
     this.id = id;
     this.x = x;
     this.y = y;
     this.z = z;
+    this.width = width;
+    this.deltaz = deltaz;
     this.enemyEl = document.createElement("div");
   }
   initializing() {
@@ -17,20 +19,16 @@ class Enemy {
     const width = document.getElementById("wrapper").offsetWidth;
     const height = document.getElementById("wrapper").offsetHeight;
 
-    this.z += 20;
+    this.z = this.z + this.deltaz;
 
     if (this.z > 0) {
-      this.z = -2000;
+      this.z = -5000;
     }
 
     if (this.x > width) {
       this.x = 0;
-    } else if (this.x < 0) {
-      this.x = 1000;
     } else if (this.y > height) {
       this.y = 0;
-    } else if (this.y < 0) {
-      this.y = 600;
     }
   };
   drawing() {
@@ -38,9 +36,9 @@ class Enemy {
   }
 
   deleteEl = () => {
-    console.log(document.getElementById("container"))
-    this.enemyEl.remove()
-  }
+    console.log(document.getElementById("container"));
+    this.enemyEl.remove();
+  };
 }
 
 export default Enemy;

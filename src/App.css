@@ -1,34 +1,23 @@
-/* * {
-  margin: 0;
-} */
+
 
 .background{
   background-image: url("./img/back1.jpg");
-  background-repeat: no-repeat;
+  width: 100vw;
   height: 100vh;
-
-
+  margin:0;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.background h1 {
-  margin: 0;
-}
-
-.title{
-  color:white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height:100%
-}
 .link{
   text-decoration: none;
   color:white;
-  font-size: 40px;
-  font-weight: bolder;
+  text-align: center;
+  font-size: 24px;
 }
 .link:hover{
-  color: yellowgreen;
+  text-decoration: none;
+  color: #00CED1;
 }
 
 #bigContainer {
@@ -37,8 +26,8 @@
 }
 
 #wrapper {
-  height: 600px;
-  width: 1000px;
+  height: 100vh;
+  width: 100vw;
   background-color: black;
 }
 
@@ -61,18 +50,18 @@
   width: 50px;
   height: 50px;
   position: absolute;
+  background-image: url("./Cube/spaceshipText.jpg");
+
 }
 
 #front {
   transform: translateZ(-25px);
-  background-image: url("./Cube/spaceshipText.jpg");
   background-size: cover;
 
 }
 
 
 #back {
-  background-image: url("./Cube/spaceshipText.jpg");
   background-size: cover;
 
   transform: translateZ(25px);
@@ -80,7 +69,6 @@
 }
 
 #top {
-  background-image: url("./Cube/spaceshipText.jpg");
   background-size: cover;
   transform-origin: top center;
   transform: translateZ(25px) rotateX(-90deg) translateX(0px);
@@ -89,7 +77,6 @@
 
 
 #bottom {
-  background-image: url("./Cube/spaceshipText.jpg");
   background-size: cover;
   transform-origin: bottom center;
   transform: rotateX(90deg) translateY(25px);
@@ -98,7 +85,6 @@
 
 
 #left {
-  background-image: url("./Cube/spaceshipText.jpg");
   background-size: cover;
   transform-origin: center left;
   transform: rotateY(270deg) translateX(-25px);
@@ -107,7 +93,6 @@
 
 
 #rigth {
-  background-image: url("./Cube/spaceshipText.jpg");
   background-size: cover;
   transform-origin: top right;
   transform: rotateY(270deg) translateX(25px);
@@ -124,32 +109,32 @@
 
 .star {
   /* background-color: white; */
-  background-image: url("./Cube/star02.png");
   background-size: cover;
   width: 4px;
   height: 4px;
   position: absolute;
+  background-image: url("./Cube/star02.png");
 }
 
 .b {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 150px;
+  height: 50px;
   background-color: #3b4ba3;
-  border-radius: 50%;
+  border-radius: 80%;
   position: absolute;
   box-shadow: inset -25px -25px 40px rgba(0, 0, 0, .5);
-  background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 220, .3) 0%, transparent 100%);
-  background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 220, .3) 0%, transparent 100%);
-  background-image: -o-linear-gradient(-45deg, rgba(255, 255, 220, .3) 0%, transparent 100%);
-  background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 220, .3) 0%, transparent 100%);
-
+  background-image: url("./Cube/img/textgold3.jpg");
 }
 
+button {
+  margin: 5px
+}
 .planet {
   width: 200px;
   height: 200px;
   position: absolute;
+  text-align:center;
   background-size: contain;
   background-repeat: no-repeat;
 }

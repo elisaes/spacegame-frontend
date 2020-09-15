@@ -24,7 +24,7 @@ class Register extends Component {
       "http://localhost:3010/auth/register",
       this.state
     );
-    console.log(res);
+
   };
 
   render() {

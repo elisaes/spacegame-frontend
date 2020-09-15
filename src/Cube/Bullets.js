@@ -1,9 +1,10 @@
 class Bullet {
-  constructor(id, x, y, z) {
+  constructor(id, x, y, z,width) {
     this.id = id;
     this.x = x;
     this.y = y;
     this.z = z;
+    this.width = width;
     this.bulletEl = document.createElement("div");
     this.bulletEl.className = "bullet";
   }

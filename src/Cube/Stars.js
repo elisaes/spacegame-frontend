@@ -20,8 +20,8 @@ class Stars {
   movement() {
     this.z += this.velocity;
     this.starEl.style.transform = `translateZ(${this.z}px)`;
-    if (this.z > 1000) {
-      this.z = -2000;
+    if (this.z > 100) {
+      this.z = -5000;
     }
   }
 }

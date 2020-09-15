@@ -18,23 +18,7 @@ class Login extends Component {
     return (
       <div>
         login
-        <Container>
-          <Row>
-            <Form.Control
-              name="email"
-              type="email"
-              onChange={this.changeHandler}
-            ></Form.Control>
-          </Row>
-          <Row>
-            <Form.Control
-              name="password"
-              type="password"
-              onChange={this.changeHandler}
-            ></Form.Control>
-          </Row>
-          <Button onClick={this.loginHandler}>Login</Button>
-        </Container>
+        
       </div>
     );
   }

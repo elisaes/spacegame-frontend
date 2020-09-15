@@ -10,10 +10,8 @@ class Planet {
   }
   initializing = () => {
     this.planetEl.style.backgroundImage = `url(${this.url})`;
-    this.planetEl.style.top=this.y + "px"
-    this.planetEl.style.left=this.x+ "px"
-    this.planetEl.style.transform = `translateZ(${this.z}px)`;
 
+    this.planetEl.style.transform = `translate3d(${this.x}px, ${this.y}px, ${this.z}px)`;
 
     document.getElementById("container").appendChild(this.planetEl);
   };

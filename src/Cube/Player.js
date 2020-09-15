@@ -1,10 +1,12 @@
 import Bullet from "./Bullets";
 
 class Player {
-  constructor(x, y, z, bulletObj) {
+  constructor(x, y, z, bulletObj, width) {
+    this.health = 100;
     this.x = x;
     this.y = y;
     this.z = z;
+    this.width = width;
     this.keys = {};
     this.i = 0;
     this.bulletsObj = bulletObj;
@@ -31,13 +33,13 @@ class Player {
   };
 
   moving = (dt) => {
-    const width = document.getElementById("wrapper").offsetWidth;
-    const height = document.getElementById("wrapper").offsetHeight;
-    this.rotation +=5 ;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    this.rotation += 1;
 
     if (this.x > width) {
       this.x = 0;
-    } else if (this.x < 0) {
+    } else if (this.x < 0 && this.Z > 500) {
       this.x = 1000;
     } else if (this.y > height) {
       this.y = 0;
@@ -57,10 +59,10 @@ class Player {
         this.x += 0.2 * dt;
       }
       if (this.keys["KeyS"]) {
-        this.z -= 0.2 * dt;
+        this.z -= 0.8 * dt;
       }
       if (this.keys["KeyX"]) {
-        this.z += 0.2 * dt;
+        this.z += 0.8 * dt;
       }
       if (this.keys["KeyC"]) {
         this.shooting();
@@ -72,12 +74,11 @@ class Player {
 
     cubeWrapper.style.transform = `translate3d(${this.x}px, ${this.y}px, ${this.z}px) rotateX(${this.rotation}deg) rotateY(${this.rotation}deg) rotateZ(${this.rotation}deg)`;
     // cubeWrapper.style.transform = ``;
-
   }
   shooting = () => {
     this.i++;
 
-    const bullet = new Bullet(this.i, this.x, this.y, this.z);
+    const bullet = new Bullet(this.i, this.x, this.y, this.z, 5);
     bullet.initialize();
     this.bulletsObj[this.i] = bullet;
   };

@@ -1,19 +1,28 @@
 import React, { Component } from "react";
 import Logic from "./Logic";
 import "../App.css";
+import HealthBar from "./healthbar/healthbar";
 
 class Cube extends Component {
+
+  state = {playerHealth : 100}
+  
+
+  updatePlayerHealth=(health)=>{
+    this.setState({playerHealth : health})
+  }
+
   componentDidMount = () => {
 
-   Logic();
+   Logic(this.updatePlayerHealth);
     
   };
   render() {
-    console.log("Render",Date.now())
 
     return (
       <div>
         <div id="wrapper">
+        <HealthBar health={this.state.playerHealth}/>
           <div id="bigContainer">
             <div id="container">
               <div id="cubeWrapper">
